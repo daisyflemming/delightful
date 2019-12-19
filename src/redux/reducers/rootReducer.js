@@ -9,7 +9,7 @@ const rootReducer = (state = initState, action) => {
       sequenceDescription: action.description,
       sequence: action.sequence
     }
-    let sequences = [...state.sequence, newSequence];
+    let sequences = [...state.sequences, newSequence];
     return {
       ...state,
       sequences: sequences

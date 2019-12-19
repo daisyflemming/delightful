@@ -1,7 +1,6 @@
 import React from 'react';
 import {Field, reduxForm} from 'redux-form';
-import {connect} from 'react-redux'
-import {addSequence} from "../../redux/actions/sequenceActions";
+import {connect} from 'react-redux';
 
 const validate = (values) => {
   const errors = {}
@@ -23,7 +22,7 @@ const validate = (values) => {
 
 const warn = (values) => {
   const warnings = {};
-  if (values.sequences && values.sequence && values.sequences.includes(values.sequence)) {
+  if (values.tcga_sequences && values.sequence && values.tcga_sequences.includes(values.sequence)) {
      warnings.sequence = 'The imported sequence is already in the system.'
   }
   return warnings
@@ -48,19 +47,12 @@ const renderField = ({
   </div>
 )
 
-const handleSubmit = (e) => {
-  console.log(e.target)
-  //props.addSequence(values.name, values.description, values.sequence);
-  //props.history.push('/');
-}
-
 let UploadForm = props => {
-  console.log(props)
-  const {pristine, reset, submitting, invalid} = props;
+  const {pristine, reset, submitting, invalid, handleSubmit} = props;
   return (
     <div className={'container'}>
       <h3>Add a new DNA sequence</h3>
-      <form >
+      <form onSubmit={handleSubmit}>
         <Field name='name' component={renderField} placeholder='Sequence name'
                type="text"/>
         <Field name='description' component={renderField} placeholder='Sequence Description'
@@ -68,7 +60,7 @@ let UploadForm = props => {
         <Field name='sequence'component={renderField} placeholder='DNA Sequence'
                type="textarea" />
         <button type='submit' disabled={submitting || invalid}
-                className={'btn-small indigo button-margin'} onClick={handleSubmit} >
+                className={'btn-small indigo button-margin'} >
           <i className="material-icons left">add</i>Add Sequence
         </button>
         <button type="button" disabled={pristine || submitting} onClick={reset}
@@ -84,15 +76,8 @@ const mapStateToProps = (state) => {
   return {
     // extract all TCGA sequence from existing list
     initialValues: {
-      //sequences: state.rootReducer.sequences.map(a => a.sequence),
-      sequences: ['AAA']
+      tcga_sequences: state.rootReducer.sequences.map(a => a.sequence),
     }
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addSequence: (name, description, sequence) => dispatch(addSequence(name, description, sequence)),
   }
 }
 
@@ -101,13 +86,7 @@ UploadForm = reduxForm({
 })(UploadForm)
 
 UploadForm = connect(
-  mapStateToProps,
-  mapDispatchToProps // bind account loading action creator
+  mapStateToProps
 )(UploadForm)
 
 export default UploadForm
-
-// export default reduxForm({
-//     form: 'uploadForm', validate, warn,
-//     enableReinitialize: true
-// })(connect(mapStateToProps, mapDispatchToProps)(UploadForm));
