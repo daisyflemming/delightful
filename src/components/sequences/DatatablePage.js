@@ -5,6 +5,7 @@ import SequenceModal from "./SequenceModal";
 
 /*
  * See mdbreact API at https://mdbootstrap.com/docs/react/tables/datatables/
+ * https://stackblitz.com/edit/react-92kvrq?file=TablePage.js
  */
 const data = {
   columns: [
@@ -28,14 +29,17 @@ const data = {
 };
 
 class DatatablePage extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      showPopup: false
-    };
+  state = {
+    showPopup: false
   }
 
-  showModal(selectedSequence) {
+  toggle = () => {
+    this.setState({
+      showPopup: !this.state.showPopup,
+    });
+  }
+
+  showModal = (selectedSequence) => {
     this.setState({
       showPopup: !this.state.showPopup,
       selectedSequence
@@ -63,12 +67,12 @@ class DatatablePage extends React.Component {
             data={data}
             sortRows={['sequenceName asc']}
           />
-          <MDBModal isOpen={this.state.showPopup} toggle={this.showModal}>
+          <MDBModal isOpen={this.state.showPopup} toggle={this.toggle}>
             <MDBModalBody>
               <SequenceModal data={this.state.selectedSequence}/>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.showModal}>Close</MDBBtn>
+              <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
             </MDBModalFooter>
           </MDBModal>
         </MDBContainer>
