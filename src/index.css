@@ -30,6 +30,13 @@ body {
 .button-margin {
   margin-right: 10px;
 }
+
+nav .badge{
+  position: relative;
+  top: 0px;
+  right: 0px;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

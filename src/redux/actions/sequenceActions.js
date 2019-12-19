@@ -6,3 +6,10 @@ export const addSequence = (name, description, sequence) => {
     sequence
   }
 }
+
+export const importSequences = (data) => {
+  return {
+    type: 'IMPORT_SEQUENCES',
+    data
+  }
+}

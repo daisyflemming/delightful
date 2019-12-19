@@ -1,10 +1,10 @@
-import React from "react";
-import UploadForm from "./UploadForm";
-import {addSequence} from "../../redux/actions/sequenceActions";
-import {connect} from "react-redux";
+import React from 'react';
+import UploadForm from './UploadForm';
+import {addSequence} from '../../redux/actions/sequenceActions';
+import {connect} from 'react-redux';
 
 class AddNewSequence extends React.Component {
-  addNewSequence = async values => {
+  addNewSequence = values => {
     this.props.addSequence(values.name, values.description, values.sequence);
     window.alert('You have added a new sequence called \''+ values.name);
   };
@@ -18,7 +18,7 @@ class AddNewSequence extends React.Component {
 
   render() {
     return (
-      <div className="container root">
+      <div className='container root'>
         <div className={'row'}>
           <div className={'col s12'}>
               <UploadForm onSubmit={this.addNewSequence} />

@@ -1,29 +1,18 @@
 import React from "react";
-import {connect} from "react-redux";
+import DatatablePage from "./DatatablePage";
 
 class ViewSequences extends React.Component {
   constructor(props) {
     super(props);
   }
   render() {
-    console.log(this.props)
+    console.log(this.props);
     return (
       <div className="container root">
-        <div className={'row'}>
-          <div className={'col s12'}>
-            {this.props.sequences.length}
-          </div>
-        </div>
+        <DatatablePage />
       </div>
-    );
+    )
   }
 };
 
-
-const mapStateToProps = (state) => {
-  return {
-    sequences: state.rootReducer.sequences
-  }
-};
-
-export default connect(mapStateToProps)(ViewSequences)
+export default ViewSequences

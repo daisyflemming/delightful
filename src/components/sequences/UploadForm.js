@@ -82,7 +82,7 @@ const mapStateToProps = (state) => {
 }
 
 UploadForm = reduxForm({
-  form: 'initializeFromState', validate, warn // a unique identifier for this form
+  form: 'uploadSequenceForm', validate, warn // a unique identifier for this form
 })(UploadForm)
 
 UploadForm = connect(
