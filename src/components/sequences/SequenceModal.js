@@ -2,7 +2,7 @@ import React from 'react';
 
 const truncateSequence =(s)=>{
   let list = [];
-  let charPerRow = 5;
+  let charPerRow = 50;
   let lines = (s.length /charPerRow)
   for (let i=0; i < lines; i++) {
     list[i] = s.slice(i*charPerRow, (i+1)*charPerRow)
@@ -14,7 +14,7 @@ const SequenceModal = (props) => {
   const {data} = props;
   const sequenceList = truncateSequence(data.sequence);
   return (
-    <div className="container">
+    <div>
         <div id={id} className={'modal-content'}>
           <h4>{data.sequenceName}</h4>
           {sequenceList.map((s) => <div>{s}</div>)}

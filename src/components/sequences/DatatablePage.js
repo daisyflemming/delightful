@@ -31,12 +31,11 @@ class DatatablePage extends React.Component {
   constructor() {
     super();
     this.state = {
-      showModal: false
+      showPopup: false
     };
   }
 
   showModal(selectedSequence) {
-    console.log(selectedSequence)
     this.setState({
       showPopup: !this.state.showPopup,
       selectedSequence
@@ -69,7 +68,7 @@ class DatatablePage extends React.Component {
               <SequenceModal data={this.state.selectedSequence}/>
             </MDBModalBody>
             <MDBModalFooter>
-              <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
+              <MDBBtn color="secondary" onClick={this.showModal}>Close</MDBBtn>
             </MDBModalFooter>
           </MDBModal>
         </MDBContainer>
