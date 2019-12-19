@@ -52,7 +52,7 @@ let UploadForm = props => {
   return (
     <div className={'container'}>
       <h3>Add a new DNA sequence</h3>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={ values => {handleSubmit(values); reset(values)} }>
         <Field name='name' component={renderField} placeholder='Sequence name'
                type="text"/>
         <Field name='description' component={renderField} placeholder='Sequence Description'
