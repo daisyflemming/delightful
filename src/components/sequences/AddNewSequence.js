@@ -1,6 +1,5 @@
 import React from "react";
 import UploadForm from "./UploadForm";
-import AnalysisDescription from "./AnalysisDescription";
 
 export default class AddNewSequence extends React.Component {
   constructor(props) {
