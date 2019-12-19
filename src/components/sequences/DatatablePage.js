@@ -1,56 +1,74 @@
 import React from 'react';
 import {MDBDataTable} from 'mdbreact';
 import {connect} from "react-redux";
+import SequenceModal from "./SequenceModal";
 
 /*
  * See mdbreact API at https://mdbootstrap.com/docs/react/tables/datatables/
  */
-const DatatablePage = (props) => {
-  const {sequences} = props;
-  sequences.map(s => {
-    s['truncated'] = s.sequence.slice(0, 30) + '...'
-  });
+const data = {
+  columns: [
+    {
+      label: 'Name',
+      field: 'sequenceName',
+      sort: 'asc',
+      searchable: true
+    },
+    {
+      label: 'Description',
+      field: 'sequenceDescription',
+      sort: 'asc',
+    },
+    {
+      label: 'Sequence',
+      field: 'truncated',
+      sort: 'asc',
+    },
+  ],
+};
 
-  const handleRowClick = (e) =>{
-    console.log(e)
-
+class DatatablePage extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      showPopup: false
+    };
   }
 
-  const data = {
-    columns: [
-      {
-        label: 'Name',
-        field: 'sequenceName',
-        sort: 'asc',
-        searchable: true
-      },
-      {
-        label: 'Description',
-        field: 'sequenceDescription',
-        sort: 'asc',
-      },
-      {
-        label: 'Sequence',
-        field: 'truncated',
-        sort: 'asc',
-      },
-    ],
-    rows: sequences,
-    clickEvent: handleRowClick
-  };
+  togglePopup(selectedSequence) {
+    this.setState({
+      showPopup: !this.state.showPopup,
+      selectedSequence
+    });
+  }
 
-  return (
-    <div className={'container'}>
-      <MDBDataTable
-        exportToCSV
-        striped
-        bordered
-        hover
-        data={data}
-        sortRows={['sequenceName asc']}
-      />
-    </div>
-  );
+  render() {
+    const {sequences} = this.props;
+    sequences.map(s => {
+      s['truncated'] = s.sequence.slice(0, 30) + '...';
+      // s['clickEvent'] = () => {
+      //   this.togglePopup(s);
+      // }
+      return s;
+    });
+    data['rows'] = sequences;
+    return (
+      <div className={'container'}>
+        <MDBDataTable
+          exportToCSV
+          striped
+          bordered
+          hover
+          data={data}
+          sortRows={['sequenceName asc']}
+        />
+        {this.state.showPopup ?
+          <SequenceModal data={this.state.selectedSequence}/>
+          : null
+        }
+      </div>
+    );
+  }
 }
 const mapStateToProps = (state) => {
   return {

@@ -2,7 +2,6 @@ import React from 'react';
 import FileUploadComponent from './FileUpload';
 import {importSequences} from '../../redux/actions/sequenceActions';
 import {connect} from 'react-redux';
-import {post} from 'axios';
 
 class ImportSequences extends React.Component {
   importSequences = async data => {
