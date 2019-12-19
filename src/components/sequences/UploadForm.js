@@ -21,12 +21,10 @@ const validate = (values) => {
   return errors
 }
 
-const warn = (values, props) => {
-  console.log(props)
-  console.log(values)
+const warn = (values) => {
   const warnings = {};
-  if (props.initialValues && props.initialValues.sequences && props.initialValues.sequences.contains(values.sequence)) {
-    warnings.sequence = 'Hey, the imported sequence is alraedy in the system.'
+  if (values.sequences && values.sequence && values.sequences.includes(values.sequence)) {
+     warnings.sequence = 'The imported sequence is already in the system.'
   }
   return warnings
 }
@@ -56,7 +54,7 @@ const handleSubmit = (e) => {
   //props.history.push('/');
 }
 
-const UploadForm = props => {
+let UploadForm = props => {
   console.log(props)
   const {pristine, reset, submitting, invalid} = props;
   return (
@@ -98,7 +96,18 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default reduxForm({
-    form: 'uploadForm', validate, warn,
+UploadForm = reduxForm({
+  form: 'initializeFromState', validate, warn // a unique identifier for this form
+})(UploadForm)
 
-})(connect(mapStateToProps, mapDispatchToProps)(UploadForm));
+UploadForm = connect(
+  mapStateToProps,
+  mapDispatchToProps // bind account loading action creator
+)(UploadForm)
+
+export default UploadForm
+
+// export default reduxForm({
+//     form: 'uploadForm', validate, warn,
+//     enableReinitialize: true
+// })(connect(mapStateToProps, mapDispatchToProps)(UploadForm));

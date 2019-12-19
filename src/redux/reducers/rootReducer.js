@@ -3,7 +3,7 @@ const initState = {
 }
 
 const rootReducer = (state = initState, action) => {
-  if(action.type === 'ADD_SEQUENCE'){
+  if (action.type === 'ADD_SEQUENCE'){
     let newSequence = {
       sequenceName: action.name,
       sequenceDescription: action.description,
