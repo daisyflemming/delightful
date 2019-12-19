@@ -58,15 +58,7 @@ class DatatablePage extends React.Component {
     data['rows'] = sequences;
     return (
       <div className={'container'}>
-        <MDBContainer>
-          <MDBDataTable
-            exportToCSV
-            striped
-            bordered
-            hover
-            data={data}
-            sortRows={['sequenceName asc']}
-          />
+        <MDBContainer >
           <MDBModal isOpen={this.state.showPopup} toggle={this.toggle}>
             <MDBModalBody>
               <SequenceModal data={this.state.selectedSequence}/>
@@ -75,6 +67,15 @@ class DatatablePage extends React.Component {
               <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
             </MDBModalFooter>
           </MDBModal>
+
+          <MDBDataTable
+            exportToCSV
+            striped
+            bordered
+            hover
+            data={data}
+            sortRows={['sequenceName asc']}
+          />
         </MDBContainer>
       </div>
     );

@@ -14,7 +14,7 @@ const SequenceModal = (props) => {
   const {data} = props;
   const sequenceList = truncateSequence(data.sequence);
   return (
-    <div>
+    <div >
         <div id={id} className={'modal-content'}>
           <h4>{data.sequenceName}</h4>
           {sequenceList.map((s) => <div>{s}</div>)}

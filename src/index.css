@@ -36,7 +36,12 @@ nav .badge{
   top: 0px;
   right: 0px;
 }
-
+.sequence-modal{
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  height: 100%;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
