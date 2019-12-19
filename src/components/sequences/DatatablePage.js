@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBDataTable} from 'mdbreact';
+import {MDBBtn, MDBContainer, MDBDataTable, MDBModal, MDBModalBody, MDBModalFooter} from 'mdbreact';
 import {connect} from "react-redux";
 import SequenceModal from "./SequenceModal";
 
@@ -31,11 +31,12 @@ class DatatablePage extends React.Component {
   constructor() {
     super();
     this.state = {
-      showPopup: false
+      showModal: false
     };
   }
 
-  togglePopup(selectedSequence) {
+  showModal(selectedSequence) {
+    console.log(selectedSequence)
     this.setState({
       showPopup: !this.state.showPopup,
       selectedSequence
@@ -46,26 +47,32 @@ class DatatablePage extends React.Component {
     const {sequences} = this.props;
     sequences.map(s => {
       s['truncated'] = s.sequence.slice(0, 30) + '...';
-      // s['clickEvent'] = () => {
-      //   this.togglePopup(s);
-      // }
+      s['clickEvent'] = () => {
+        this.showModal(s);
+      }
       return s;
     });
     data['rows'] = sequences;
     return (
       <div className={'container'}>
-        <MDBDataTable
-          exportToCSV
-          striped
-          bordered
-          hover
-          data={data}
-          sortRows={['sequenceName asc']}
-        />
-        {this.state.showPopup ?
-          <SequenceModal data={this.state.selectedSequence}/>
-          : null
-        }
+        <MDBContainer>
+          <MDBDataTable
+            exportToCSV
+            striped
+            bordered
+            hover
+            data={data}
+            sortRows={['sequenceName asc']}
+          />
+          <MDBModal isOpen={this.state.showPopup} toggle={this.showModal}>
+            <MDBModalBody>
+              <SequenceModal data={this.state.selectedSequence}/>
+            </MDBModalBody>
+            <MDBModalFooter>
+              <MDBBtn color="secondary" onClick={this.toggle}>Close</MDBBtn>
+            </MDBModalFooter>
+          </MDBModal>
+        </MDBContainer>
       </div>
     );
   }

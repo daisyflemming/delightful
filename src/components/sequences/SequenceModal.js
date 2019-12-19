@@ -1,19 +1,24 @@
 import React from 'react';
 
+const truncateSequence =(s)=>{
+  let list = [];
+  let charPerRow = 5;
+  let lines = (s.length /charPerRow)
+  for (let i=0; i < lines; i++) {
+    list[i] = s.slice(i*charPerRow, (i+1)*charPerRow)
+  }
+  return list;
+}
 const SequenceModal = (props) => {
+  const id = '_' + Math.random().toString(36).substr(2, 9);
+  const {data} = props;
+  const sequenceList = truncateSequence(data.sequence);
   return (
     <div className="container">
-      <h2>{props.data.sequenceName}</h2>
-
-      <div id="props.data.sequenceName" className="modal">
-        <div className="modal-content">
-          <p>{props.data.sequence}</p>
-        </div>
-        <div className="modal-footer">
-          <a href="#!" className="modal-close btn orange">Close</a>
-        </div>
+        <div id={id} className={'modal-content'}>
+          <h4>{data.sequenceName}</h4>
+          {sequenceList.map((s) => <div>{s}</div>)}
       </div>
-
     </div>
   )
 }
