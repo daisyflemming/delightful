@@ -52,7 +52,7 @@ let UploadForm = props => {
   return (
     <div className={'container'}>
       <h3>Add a new DNA sequence</h3>
-      <form onSubmit={ values => {handleSubmit(values); reset(values)} }>
+      <form onSubmit={ values => {handleSubmit(values); reset()} }>
         <Field name='name' component={renderField} placeholder='Sequence name'
                type="text"/>
         <Field name='description' component={renderField} placeholder='Sequence Description'
@@ -82,7 +82,8 @@ const mapStateToProps = (state) => {
 }
 
 UploadForm = reduxForm({
-  form: 'uploadSequenceForm', validate, warn // a unique identifier for this form
+  form: 'uploadSequenceForm', validate, warn,
+  enableReinitialize: true
 })(UploadForm)
 
 UploadForm = connect(
