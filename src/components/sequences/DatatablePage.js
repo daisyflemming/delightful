@@ -19,11 +19,13 @@ const data = {
       label: 'Description',
       field: 'sequenceDescription',
       sort: 'asc',
+      searchable: true,
     },
     {
       label: 'Sequence',
       field: 'truncated',
       sort: 'asc',
+      searchable: true,
     },
   ],
 };
@@ -69,12 +71,10 @@ class DatatablePage extends React.Component {
           </MDBModal>
 
           <MDBDataTable
-            exportToCSV
             striped
             bordered
-            hover
             data={data}
-            sortRows={['sequenceName asc']}
+            order={['sequenceName', 'asc', 'sequence', 'asc']}
           />
         </MDBContainer>
       </div>
