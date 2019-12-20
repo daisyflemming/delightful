@@ -1,5 +1,7 @@
+import data from './sequences';
+
 const initState = {
-  sequences: []
+  sequences: data.sequences
 }
 
 const rootReducer = (state = initState, action) => {
