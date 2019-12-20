@@ -17,15 +17,10 @@ const validate = (values) => {
     errors.sequence = 'Sequence should only contains T, C, G, or A character ' +
       ' and no white space should be included.'
   }
-  return errors
-}
-
-const warn = (values) => {
-  const warnings = {};
-  if (values.tcga_sequences && values.sequence && values.tcga_sequences.includes(values.sequence)) {
-     warnings.sequence = 'The imported sequence is already in the system.'
+  else if (values.tcga_sequences && values.sequence && values.tcga_sequences.includes(values.sequence)) {
+    errors.sequence = 'The imported sequence is already in the system.'
   }
-  return warnings
+  return errors
 }
 
 const renderField = ({
@@ -82,7 +77,7 @@ const mapStateToProps = (state) => {
 }
 
 UploadForm = reduxForm({
-  form: 'uploadSequenceForm', validate, warn,
+  form: 'uploadSequenceForm', validate,
   enableReinitialize: true
 })(UploadForm)
 
