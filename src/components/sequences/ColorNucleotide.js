@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const ColorNucleotide = (props) => {
   const {sequence} = props;
   const nucleotide = sequence.split('');
