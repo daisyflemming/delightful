@@ -13,7 +13,7 @@ const data = {
       label: 'Name',
       field: 'sequenceName',
       sort: 'asc',
-      searchable: true
+      searchable: true,
     },
     {
       label: 'Description',
@@ -57,7 +57,7 @@ class DatatablePage extends React.Component {
     });
     data['rows'] = sequences;
     return (
-      <div className={'container'}>
+      <div>
         <MDBContainer >
           <MDBModal isOpen={this.state.showPopup} toggle={this.toggle}>
             <MDBModalBody>

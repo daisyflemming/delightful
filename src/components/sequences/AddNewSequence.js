@@ -18,7 +18,7 @@ class AddNewSequence extends React.Component {
 
   render() {
     return (
-      <div className='container root'>
+      <div>
         <div className={'row'}>
           <div className={'col s12'}>
               <UploadForm onSubmit={this.addNewSequence} />
