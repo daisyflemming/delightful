@@ -42,6 +42,23 @@ nav .badge{
   vertical-align: middle;
   height: 100%;
 }
+
+.color-T{
+   color: #c51162
+}
+
+.color-C{
+  color: #4db6ac
+}
+
+.color-G{
+  color: #1976d2
+}
+
+.color-A{
+  color: #512da8
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

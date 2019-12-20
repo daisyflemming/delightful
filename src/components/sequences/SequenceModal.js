@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorNucleotide from "./ColorNucleotide";
 
 const truncateSequence =(s)=>{
   let list = [];
@@ -18,8 +19,8 @@ const SequenceModal = (props) => {
     <div >
         <div id={id} className={'modal-content'}>
           <h4>{data['sequenceName']}</h4>
-          {sequenceList.map((s) => <div>{s}</div>)}
-      </div>
+          {sequenceList.map((s) => <ColorNucleotide sequence={s}/>)}
+        </div>
     </div>
   )
 };
