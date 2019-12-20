@@ -3,7 +3,7 @@ import {Field, reduxForm} from 'redux-form';
 import {connect} from 'react-redux';
 
 const validate = (values) => {
-  const errors = {}
+  const errors = {};
   if (!values.name) {
     errors.name = 'Required'
   }
@@ -21,7 +21,7 @@ const validate = (values) => {
     errors.sequence = 'The imported sequence is already in the system.'
   }
   return errors
-}
+};
 
 const renderField = ({
                        input,
@@ -40,7 +40,7 @@ const renderField = ({
     ((error && <span className={'required'}><i className="material-icons icon-red darken-4">error</i> {error} </span>) ||
       (warning && <span className={'required'}>{warning}</span>))}
   </div>
-)
+);
 
 let UploadForm = props => {
   const {pristine, reset, submitting, invalid, handleSubmit} = props;
@@ -52,7 +52,7 @@ let UploadForm = props => {
                type="text"/>
         <Field name='description' component={renderField} placeholder='Sequence Description'
                type="text"/>
-        <Field name='sequence'component={renderField} placeholder='DNA Sequence'
+        <Field name='sequence' component={renderField} placeholder='DNA Sequence'
                type="textarea" />
         <button type='submit' disabled={submitting || invalid}
                 className={'btn-small indigo button-margin'} >
@@ -74,15 +74,15 @@ const mapStateToProps = (state) => {
       tcga_sequences: state.rootReducer.sequences.map(a => a.sequence),
     }
   }
-}
+};
 
 UploadForm = reduxForm({
   form: 'uploadSequenceForm', validate,
   enableReinitialize: true
-})(UploadForm)
+})(UploadForm);
 
 UploadForm = connect(
   mapStateToProps
-)(UploadForm)
+)(UploadForm);
 
 export default UploadForm
