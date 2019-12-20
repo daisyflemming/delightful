@@ -10,11 +10,11 @@ class AddNewSequence extends React.Component {
   };
 
   /* this method is used for debugging */
-  showFormValues = async values => {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    await sleep(500); // simulate server latency
-    window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
-  };
+  // showFormValues = async values => {
+  //   const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+  //   await sleep(500); // simulate server latency
+  //   window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
+  // };
 
   render() {
     return (

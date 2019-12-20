@@ -13,6 +13,6 @@ class ViewSequences extends React.Component {
       </div>
     )
   }
-};
+}
 
 export default ViewSequences

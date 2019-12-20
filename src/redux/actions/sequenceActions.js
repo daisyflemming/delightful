@@ -5,11 +5,11 @@ export const addSequence = (name, description, sequence) => {
     description,
     sequence
   }
-}
+};
 
 export const importSequences = (data) => {
   return {
     type: 'IMPORT_SEQUENCES',
     data
   }
-}
+};

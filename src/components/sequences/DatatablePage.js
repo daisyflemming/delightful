@@ -31,28 +31,28 @@ const data = {
 class DatatablePage extends React.Component {
   state = {
     showPopup: false
-  }
+  };
 
   toggle = () => {
     this.setState({
       showPopup: !this.state.showPopup,
     });
-  }
+  };
 
   showModal = (selectedSequence) => {
     this.setState({
       showPopup: !this.state.showPopup,
       selectedSequence
     });
-  }
+  };
 
   render() {
     const {sequences} = this.props;
     sequences.map(s => {
-      s['truncated'] = s.sequence.slice(0, 30) + '...';
+      s['truncated'] = s.sequence.length <= 30? s.sequence.slice(0, 30) : s.sequence.slice(0, 30) +'...';
       s['clickEvent'] = () => {
         this.showModal(s);
-      }
+      };
       return s;
     });
     data['rows'] = sequences;

@@ -5,16 +5,8 @@ import {connect} from 'react-redux';
 
 class ImportSequences extends React.Component {
   importSequences = async data => {
-    this.props.importSequences(data);
+    await this.props.importSequences(data);
     window.alert('You have added a new sequence called \''+ data);
-  };
-
-
-  /* this method is used for debugging */
-  showFormValues = async values => {
-    const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
-    await sleep(500); // simulate server latency
-    window.alert(`You submitted:\n\n${JSON.stringify(values, null, 2)}`);
   };
 
   render() {
