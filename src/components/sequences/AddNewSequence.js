@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 class AddNewSequence extends React.Component {
   addNewSequence = values => {
     this.props.addSequence(values.name, values.description, values.sequence);
-    window.alert('You have added a new sequence called \''+ values.name);
+    window.alert('You have added a new sequence called '+ values.name);
   };
 
   /* this method is used for debugging */
