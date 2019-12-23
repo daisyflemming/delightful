@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBTableBody,MDBBtn, MDBContainer, MDBDataTable, MDBModal, MDBModalBody, MDBModalFooter} from 'mdbreact';
+import {MDBBtn, MDBContainer, MDBDataTable, MDBModal, MDBModalBody, MDBModalFooter} from 'mdbreact';
 import {connect} from "react-redux";
 import SequenceModal from "./SequenceModal";
 
@@ -52,7 +52,7 @@ class DatatablePage extends React.Component {
   render() {
     const {sequences} = this.props;
     sequences.map(s => {
-      s['truncated'] = <span className={'truncate'}>{s.sequence}</span>
+      s['truncated'] = <span className={'truncate'}>{s.sequence}</span>;
       s['clickEvent'] = () => {
         this.showModal(s);
       };
