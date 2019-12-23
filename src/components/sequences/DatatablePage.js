@@ -1,5 +1,5 @@
 import React from 'react';
-import {MDBBtn, MDBContainer, MDBDataTable, MDBModal, MDBModalBody, MDBModalFooter} from 'mdbreact';
+import {MDBTableBody,MDBBtn, MDBContainer, MDBDataTable, MDBModal, MDBModalBody, MDBModalFooter} from 'mdbreact';
 import {connect} from "react-redux";
 import SequenceModal from "./SequenceModal";
 
@@ -7,6 +7,7 @@ import SequenceModal from "./SequenceModal";
  * See mdbreact API at https://mdbootstrap.com/docs/react/tables/datatables/
  * https://stackblitz.com/edit/react-92kvrq?file=TablePage.js
  */
+
 const data = {
   columns: [
     {
@@ -51,7 +52,7 @@ class DatatablePage extends React.Component {
   render() {
     const {sequences} = this.props;
     sequences.map(s => {
-      s['truncated'] = s.sequence.length <= 30? s.sequence.slice(0, 30) : s.sequence.slice(0, 30) +'...';
+      s['truncated'] = <span className={'truncate'}>{s.sequence}</span>
       s['clickEvent'] = () => {
         this.showModal(s);
       };
