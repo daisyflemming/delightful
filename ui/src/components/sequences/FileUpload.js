@@ -36,11 +36,9 @@ let FileUpload = (props) => {
     const url = 'http://localhost:4000/fileupload';
     post(url, formData, config)
       .then(function(response) {
-        console.log(response.data.sequences);
         let seqNames = [];
         let errSeqNames = [];
         let seqArray = response.data.sequences;
-        console.log(props.tcga_sequences);
         seqArray.forEach(s => {
           if (!props.tcga_sequences.includes(s.sequence)) {
             props.addSequence(s.sequenceName, s.sequenceDescription, s.sequence);
