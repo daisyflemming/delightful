@@ -19,7 +19,7 @@ let Navbar = (props) => {
       </div>
     </nav> 
   )
-}
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -29,6 +29,6 @@ const mapStateToProps = (state) => {
 
 Navbar = connect(
   mapStateToProps
-)(Navbar)
+)(Navbar);
 
 export default withRouter(Navbar)

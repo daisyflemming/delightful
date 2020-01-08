@@ -31,10 +31,10 @@ let FileUpload = (props) => {
   const onFormSubmit = (data) => {
     console.log(data);
     let formData = new FormData();
-    formData.append('File', data.file)
+    formData.append('File', data.file);
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
-    }
+    };
     console.log(url);
     post(url, formData, config)
       .then(function(response) {
@@ -49,7 +49,7 @@ let FileUpload = (props) => {
           else{
             errSeqNames.push(s.sequenceName)
           }
-        })
+        });
         let message = seqNames.length > 0 ? 'You have added ' + seqNames.length + ' new sequence(s)': '';
         let errorMessage = errSeqNames.length > 0 ? errSeqNames.length+ ' sequence(s) are already in the system and they are not added.':'';
         window.alert(errorMessage + '\n\n' + message);
@@ -57,7 +57,7 @@ let FileUpload = (props) => {
       .catch(function(error) {
         console.log(error);
       });
-  }
+  };
   return (
     <div className={'container'}>
       <form onSubmit={handleSubmit(onFormSubmit)}>
@@ -69,7 +69,7 @@ let FileUpload = (props) => {
       </form>
     </div>
   )
-}
+};
 
 const mapStateToProps = (state) => {
   return {
@@ -85,7 +85,7 @@ const mapDispatchToProps = (dispatch) => {
 
 FileUpload = reduxForm({
   form: 'uploadSequencesForm' // a unique identifier for this form
-})(FileUpload)
+})(FileUpload);
 
 FileUpload = connect(
   mapStateToProps,
