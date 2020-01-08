@@ -37,11 +37,22 @@ let FileUpload = (props) => {
     post(url, formData, config)
       .then(function(response) {
         console.log(response.data.sequences);
+        let seqNames = [];
+        let errSeqNames = [];
         let seqArray = response.data.sequences;
+        console.log(props.tcga_sequences);
         seqArray.forEach(s => {
-          props.addSequence(s.sequenceName, s.sequenceDescription, s.sequence);
-          window.alert('You have added a new sequence called '+ s.sequenceName);
+          if (!props.tcga_sequences.includes(s.sequence)) {
+            props.addSequence(s.sequenceName, s.sequenceDescription, s.sequence);
+            seqNames.push(s.sequenceName)
+          }
+          else{
+            errSeqNames.push(s.sequenceName)
+          }
         })
+        let message = seqNames.length > 0 ? 'You have added ' + seqNames.length + ' new sequence(s)': '';
+        let errorMessage = errSeqNames.length > 0 ? errSeqNames.length+ ' sequence(s) are already in the system and they are not added.':'';
+        window.alert(errorMessage + '\n\n' + message);
       })
       .catch(function(error) {
         console.log(error);
@@ -60,6 +71,12 @@ let FileUpload = (props) => {
   )
 }
 
+const mapStateToProps = (state) => {
+  return {
+    tcga_sequences: state.rootReducer.sequences.map(a => a.sequence),
+  }
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     addSequence: (name, description, sequence) => dispatch(addSequence(name, description, sequence)),
@@ -71,7 +88,7 @@ FileUpload = reduxForm({
 })(FileUpload)
 
 FileUpload = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FileUpload);
 
