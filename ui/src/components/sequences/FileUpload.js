@@ -6,7 +6,6 @@ import {Field, reduxForm} from 'redux-form';
 import {post} from "axios";
 import {addSequence} from "../../redux/actions/sequenceActions";
 import {connect} from "react-redux";
-import UploadForm from "./UploadForm";
 
 const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
 const FileInput = ({
