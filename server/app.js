@@ -6,6 +6,7 @@ const port = 4000;
 
 app.use(fileUpload());
 
+// this will read a json file and return the json object as response
 app.post('/fileupload', (req, res) =>{
   if (!req.files || Object.keys(req.files).length === 0) {
     return res.status(400).send('No files were uploaded.');

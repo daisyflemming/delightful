@@ -7,6 +7,8 @@ import {post} from "axios";
 import {addSequence} from "../../redux/actions/sequenceActions";
 import {connect} from "react-redux";
 
+const url = process.env.REACT_APP_UPLOAD_URL;
+
 const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
 const FileInput = ({
                      input: { value: omitValue, onChange, onBlur, ...inputProps },
@@ -33,7 +35,7 @@ let FileUpload = (props) => {
     const config = {
       headers: { 'content-type': 'multipart/form-data' }
     }
-    const url = 'http://localhost:4000/fileupload';
+    console.log(url);
     post(url, formData, config)
       .then(function(response) {
         let seqNames = [];
