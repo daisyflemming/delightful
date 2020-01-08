@@ -10,7 +10,7 @@ let Navbar = (props) => {
         <Link className="brand-logo left" to="/">Delightful Inc.</Link>
         <ul className="right">
           <li><NavLink exact to="/">Home</NavLink></li>
-          {/*<li><NavLink to='/importSequences'>Import Sequences</NavLink></li>*/}
+          <li><NavLink to='/importSequences'>Import Sequences</NavLink></li>
           <li><NavLink to='/addNewSequence'>Add New DNA Sequence</NavLink></li>
           <li><NavLink to='/viewSequences'>View Sequences
             <span className="badge white-text indigo">{sequences.length}</span>
