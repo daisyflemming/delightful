@@ -4,6 +4,9 @@
 import React from 'react'
 import {Field, reduxForm} from 'redux-form';
 import {post} from "axios";
+import {addSequence} from "../../redux/actions/sequenceActions";
+import {connect} from "react-redux";
+import UploadForm from "./UploadForm";
 
 const adaptFileEventToValue = delegate => e => delegate(e.target.files[0]);
 const FileInput = ({
@@ -34,7 +37,12 @@ let FileUpload = (props) => {
     const url = 'http://localhost:4000/fileupload';
     post(url, formData, config)
       .then(function(response) {
-        console.log(response);
+        console.log(response.data.sequences);
+        let seqArray = response.data.sequences;
+        seqArray.forEach(s => {
+          props.addSequence(s.sequenceName, s.sequenceDescription, s.sequence);
+          window.alert('You have added a new sequence called '+ s.sequenceName);
+        })
       })
       .catch(function(error) {
         console.log(error);
@@ -53,6 +61,19 @@ let FileUpload = (props) => {
   )
 }
 
-export default reduxForm({
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addSequence: (name, description, sequence) => dispatch(addSequence(name, description, sequence)),
+  }
+};
+
+FileUpload = reduxForm({
   form: 'uploadSequencesForm' // a unique identifier for this form
 })(FileUpload)
+
+FileUpload = connect(
+  null,
+  mapDispatchToProps
+)(FileUpload);
+
+export default FileUpload
